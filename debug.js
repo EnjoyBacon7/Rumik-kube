@@ -1,3 +1,6 @@
+// -----------------------------------------------------------------------
+
+// Disgusting debug function that displays the cards that each player has in their hand
 function debug(game) {
 
   var body = document.getElementsByTagName('body')[0];
@@ -71,3 +74,5 @@ function debug(game) {
   }
 
 }
+
+// -----------------------------------------------------------------------
