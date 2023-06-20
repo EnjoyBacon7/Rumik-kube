@@ -69,6 +69,15 @@ gameCanvas.onmouseup = function(e) {
       renderGame();
     }
   }
+
+  for (var i = 0; i < game.boardCards.length; i++) {
+    var card = game.boardCards[i][0];
+    if (card.dragging) {
+      card.dragging = false;
+      console.log("stopped dragging");
+      renderGame();
+    }
+  }
 }
 
 // -----------------------------------------------------------------------
