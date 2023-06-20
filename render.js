@@ -33,4 +33,9 @@ function renderHand() {
   }
 }
 
+function renderGame() {
+  renderBoard();
+  renderHand();
+}
+
 // -----------------------------------------------------------------------
