@@ -5,7 +5,7 @@
 gameCanvas.onmousedown = function(e) {
   for (var i = 0; i < game.playerCards[game.currentPlayer].length; i++) {
     var card = game.playerCards[game.currentPlayer][i];
-    if (e.offsetX > i*100 && e.offsetX < i*100 + 100 && e.offsetY > 700 && e.offsetY < 800) {
+    if (e.offsetX > i*SPRITEWIDTH && e.offsetX < i*SPRITEWIDTH + SPRITEWIDTH && e.offsetY > CANVASHEIGHT-SPRITEHEIGHT && e.offsetY < CANVASHEIGHT) {
       card.dragging = true;
       console.log("dragging");
     }
@@ -18,8 +18,8 @@ gameCanvas.onmousemove = function(e) {
   for (var i = 0; i < game.playerCards[game.currentPlayer].length; i++) {
     var card = game.playerCards[game.currentPlayer][i];
     if (card.dragging) {
-      card.posX = e.offsetX - 50;
-      card.posY = e.offsetY - 50;
+      card.posX = e.offsetX - SPRITEWIDTH/2;
+      card.posY = e.offsetY - SPRITEHEIGHT/2;
     }
   }
 
