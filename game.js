@@ -23,9 +23,7 @@ gameCanvas.onmousemove = function(e) {
     }
   }
 
-  console.log(e.offsetX, e.offsetY);
-
-  renderHand();
+  renderGame();
 }
 
 gameCanvas.onmouseup = function(e) {
@@ -49,6 +47,7 @@ gameCanvas.onmouseup = function(e) {
 
       card.dragging = false;
       console.log("stopped dragging");
+      renderGame();
     }
   }
 }
