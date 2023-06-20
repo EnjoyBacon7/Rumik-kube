@@ -32,6 +32,21 @@ gameCanvas.onmouseup = function(e) {
   for (var i = 0; i < game.playerCards[game.currentPlayer].length; i++) {
     var card = game.playerCards[game.currentPlayer][i];
     if (card.dragging) {
+
+      // Check if card is dropped on board
+      if (e.offsetX > 0 && e.offsetX < CANVASWIDTH && e.offsetY > 0 && e.offsetY < CANVASHEIGHT-SPRITEHEIGHT) {
+        card.onBoard = true;
+        game.boardCards.push([card]);
+        game.playerCards[game.currentPlayer].splice(i, 1);
+
+        // change coordinates
+        game.boardCards[game.boardCards.length-1][0].posX = e.offsetX - SPRITEWIDTH/2;
+        game.boardCards[game.boardCards.length-1][0].posY = e.offsetY - SPRITEHEIGHT/2;
+        
+        console.log(game.boardCards[game.boardCards.length-1][0].posX = e.offsetX - SPRITEWIDTH/2, game.boardCards[game.boardCards.length-1][0].posY = e.offsetY - SPRITEHEIGHT/2);
+
+      }
+
       card.dragging = false;
       console.log("stopped dragging");
     }
