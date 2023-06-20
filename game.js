@@ -43,6 +43,7 @@ gameCanvas.onmouseup = function(e) {
         
         console.log(game.boardCards[game.boardCards.length-1][0].posX = e.offsetX - SPRITEWIDTH/2, game.boardCards[game.boardCards.length-1][0].posY = e.offsetY - SPRITEHEIGHT/2);
 
+        updateDebug();
       }
 
       card.dragging = false;
