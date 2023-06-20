@@ -61,7 +61,11 @@ gameCanvas.onmouseup = function(e) {
         game.boardCards[game.boardCards.length-1][0].posY = e.offsetY - SPRITEHEIGHT/2;
         
         console.log(game.boardCards[game.boardCards.length-1][0].posX = e.offsetX - SPRITEWIDTH/2, game.boardCards[game.boardCards.length-1][0].posY = e.offsetY - SPRITEHEIGHT/2);
+<<<<<<< HEAD
         updateDebug();
+=======
+
+>>>>>>> parent of 11601c8 (added possibility to move cards on board as well)
       }
 
       card.dragging = false;
