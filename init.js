@@ -70,5 +70,3 @@ for (var i = 0; i < 4; i++) {
     game.undrawnCards.splice(randomIndex, 1);
   }
 }
-
-console.log(game.undrawnCards)
