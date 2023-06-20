@@ -64,15 +64,42 @@ function debug(game) {
     for (var j = 0; j < game.playerCards[i].length; j++) {
       var color = colors[game.playerCards[i][j].color];
       var number = game.playerCards[i][j].value;
-       if (document.getElementById(color + number + "_1").style.backgroundColor != "") {
+      if (document.getElementById(color + number + "_1").style.backgroundColor != "") {
         document.getElementById(color + number + "_2").style.backgroundColor = colors[i];
-       }
-       else {
+      }
+      else {
         document.getElementById(color + number + "_1").style.backgroundColor = colors[i];
-       }
+      }
     }
   }
 
+}
+
+function updateDebug() {
+  
+    var colors = ["blue", "red", "green", "yellow"];
+  
+    // Clear all colors
+    for (var i = 1; i < 14; i++) {
+      for (var j = 0; j < 4; j++) {
+        document.getElementById(colors[j] + i + "_1").style.backgroundColor = "";
+        document.getElementById(colors[j] + i + "_2").style.backgroundColor = "";
+      }
+    }
+
+    // Change color of corresponding cards when player owns it (noting that there are two of each card)
+    for (var i = 0; i < game.playerCards.length; i++) {
+      for (var j = 0; j < game.playerCards[i].length; j++) {
+        var color = colors[game.playerCards[i][j].color];
+        var number = game.playerCards[i][j].value;
+        if (document.getElementById(color + number + "_1").style.backgroundColor != "") {
+          document.getElementById(color + number + "_2").style.backgroundColor = colors[i];
+        }
+        else {
+          document.getElementById(color + number + "_1").style.backgroundColor = colors[i];
+        }
+      }
+    }
 }
 
 // -----------------------------------------------------------------------
