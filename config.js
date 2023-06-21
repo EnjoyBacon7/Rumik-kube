@@ -6,3 +6,5 @@ const SPRITEWIDTH = 100;
 
 const SPRITEPIXELHEIGHT = 10;
 const SPRITEPIXELWIDTH = 10;
+
+var debugMenu = true;
