@@ -21,8 +21,6 @@ gameCanvas.onmousedown = function(e) {
       game.heldCard = i;
     }
   }
-
-  console.log(game);
 }
 
 gameCanvas.onmousemove = function(e) {
