@@ -60,16 +60,16 @@ function debug(game) {
   }
 
   // Change color of corresponding cards when player owns it (noting that there are two of each card)
-  for (var i = 0; i < game.playerCards.length; i++) {
-    for (var j = 0; j < game.playerCards[i].length; j++) {
-      var color = colors[game.playerCards[i][j].color];
-      var number = game.playerCards[i][j].value;
-      if (document.getElementById(color + number + "_1").style.backgroundColor != "") {
-        document.getElementById(color + number + "_2").style.backgroundColor = colors[i];
-      }
-      else {
-        document.getElementById(color + number + "_1").style.backgroundColor = colors[i];
-      }
+  for (var i = 0; i < game.drawnCards.length; i++) {
+    var curCard = game.drawnCards[i];
+    var color = colors[curCard.color];
+    var number = curCard.value;
+    if (document.getElementById(color + number + "_1").style.backgroundColor != "") {
+      document.getElementById(color + number + "_2").style.backgroundColor = colors[curCard.state];
+    }
+    else {
+      console.log("hello");
+      document.getElementById(color + number + "_1").style.backgroundColor = colors[curCard.state];
     }
   }
 

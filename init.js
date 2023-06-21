@@ -21,9 +21,10 @@ var game = {
   nbPlayers: 0,
   currentPlayer: 0,
 
-  playerCards: [],
-  boardCards: [],
+  drawnCards: [],
   undrawnCards: [],
+
+  heldCard: [], // Stores the card currently being dragged (it is useful to store it here to avoid having to loop through all cards to find it)
 };
 
 // Initializing a card class for reusability
@@ -34,8 +35,8 @@ class card {
     this.value = 0;
     this.color = 0;
 
-    this.dragging = false;
-    this.onBoard = false;
+    // State -2 for undrawn, -1 for board, 0 for p1, etc
+    this.state = -1;
   }
 }
 
@@ -51,8 +52,7 @@ for (var j = 0; j < 8; j++) {
     curCard.posY = 0;
     curCard.value = i;
     curCard.color = j%4;  // Modulo (with j < 8) allows to loop through all 4 colors twice for each value
-    curCard.dragging = false;
-    curCard.onBoard = false;
+    curCard.onBoard = -1;
 
     game.undrawnCards.push(curCard);
   }
@@ -62,11 +62,15 @@ for (var j = 0; j < 8; j++) {
 /// Assuming there are 4 players (to fix)
 
 for (var i = 0; i < 4; i++) {
-  game.playerCards.push([]);
-
   for (var j = 0; j < 14; j++) {
     var randomIndex = Math.floor(Math.random() * game.undrawnCards.length);
-    game.playerCards[i].push(game.undrawnCards[randomIndex]);
+    curCard = game.undrawnCards[randomIndex];
     game.undrawnCards.splice(randomIndex, 1);
+
+    // Assigning values to card
+    curCard.state = i;
+
+    game.drawnCards.push(curCard);
   }
 }
+console.log(game);

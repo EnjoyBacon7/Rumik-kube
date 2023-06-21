@@ -10,9 +10,9 @@ function drawSprite(x, y, number, color) {
 // Rendering functions. Cards are considered in hand when not yet dropped. Once dropped, they are considered on board.
 function renderBoard() {
 
-  for (var i = 0; i < game.boardCards.length; i++) {
-    for (var j = 0; j < game.boardCards[i].length; j++) {
-      var card = game.boardCards[i][j];
+  for (var i = 0; i < game.drawnCards.length; i++) {
+    if(game.drawnCards[i].state == -1) {
+      var card = game.drawnCards[i];
       drawSprite(card.posX, card.posY, card.value, card.color);
     }
   }
@@ -20,20 +20,31 @@ function renderBoard() {
 
 function renderHand() {
 
+  // Draw hand background
   context.fillStyle = "grey";
   context.fillRect(0, CANVASHEIGHT-SPRITEHEIGHT, CANVASWIDTH, SPRITEHEIGHT);
-  for (var i = 0; i < game.playerCards[game.currentPlayer].length; i++) {
-    var card = game.playerCards[game.currentPlayer][i];
-    if(card.dragging) {
+
+  // Draw cards
+  for(var i = 0; i < game.drawnCards.length; i++) {
+    var card = game.drawnCards[i];
+    if(card.state == game.currentPlayer) {
       drawSprite(card.posX, card.posY, card.value, card.color);
-    }
-    else {
-      drawSprite(i*SPRITEWIDTH, CANVASHEIGHT-SPRITEHEIGHT, card.value, card.color);
+      if(card == game.heldCard) {
+        context.strokeStyle = "red";
+        context.strokeRect(card.posX, card.posY, SPRITEWIDTH, SPRITEHEIGHT);
+      }
     }
   }
 }
 
+function renderHighlights() {
+  for (var i = 0; i < game.boardCards.length; i++) {}
+}
+
 function renderGame() {
+
+  context.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
+
   renderBoard();
   renderHand();
 }

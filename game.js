@@ -1,83 +1,81 @@
 // -----------------------------------------------------------------------
 
+// Dragging functions Variables
+
+var mouseIsDown = false;
+
 // Dragging functions
 /// Only possible for the cards in hand
 gameCanvas.onmousedown = function(e) {
+  mouseIsDown = true;
+  var draggedCardFound = false;
   for (var i = 0; i < game.playerCards[game.currentPlayer].length; i++) {
+    if(draggedCardFound) { break; }
     var card = game.playerCards[game.currentPlayer][i];
+    // Splice the card from the player's hand
+    game.playerCards[game.currentPlayer].splice(i, 1);
     // For cards in hand
     if (e.offsetX > i*SPRITEWIDTH && e.offsetX < i*SPRITEWIDTH + SPRITEWIDTH && e.offsetY > CANVASHEIGHT-SPRITEHEIGHT && e.offsetY < CANVASHEIGHT) {
-      card.dragging = true;
+      // If the card that was clicked on was found
       console.log("dragging");
+      draggedCardFound = true;
+      // Set the card to the game's heldCard
+      game.heldCard = card;
     }
   }
   for (var i = 0; i < game.boardCards.length; i++) {
+    if(draggedCardFound) { break; }
     var card = game.boardCards[i][0];
     // For cards on board
     if (e.offsetX > card.posX && e.offsetX < card.posX + SPRITEWIDTH && e.offsetY > card.posY && e.offsetY < card.posY + SPRITEHEIGHT) {
-      card.dragging = true;
+      // If the card that was clicked on was found
       console.log("dragging");
+      draggedCardFound = true;
+      // Set the card to the game's heldCard
+      game.heldCard = card;
     }
   }
+
+  console.log(game);
 }
 
 gameCanvas.onmousemove = function(e) {
-  context.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
+  if (mouseIsDown){
 
-  for (var i = 0; i < game.playerCards[game.currentPlayer].length; i++) {
-    // For cards in hand
-    var card = game.playerCards[game.currentPlayer][i];
-    if (card.dragging) {
-      card.posX = e.offsetX - SPRITEWIDTH/2;
-      card.posY = e.offsetY - SPRITEHEIGHT/2;
-    }
+    game.heldCard.posX = e.offsetX - SPRITEWIDTH/2;
+    game.heldCard.posY = e.offsetY - SPRITEHEIGHT/2;
+    console.log("moving");
+    renderGame();
   }
-
-  for (var i = 0; i < game.boardCards.length; i++) {
-    // For cards on board
-    var card = game.boardCards[i][0];
-    if (card.dragging) {
-      card.posX = e.offsetX - SPRITEWIDTH/2;
-      card.posY = e.offsetY - SPRITEHEIGHT/2;
-    }
-  }
-
-  renderGame();
 }
 
 gameCanvas.onmouseup = function(e) {
-  for (var i = 0; i < game.playerCards[game.currentPlayer].length; i++) {
-    var card = game.playerCards[game.currentPlayer][i];
-    if (card.dragging) {
+  mouseIsDown = false;
 
-      // Check if card is dropped on board
-      if (e.offsetX > 0 && e.offsetX < CANVASWIDTH && e.offsetY > 0 && e.offsetY < CANVASHEIGHT-SPRITEHEIGHT) {
-        card.onBoard = true;
-        game.boardCards.push([card]);
-        game.playerCards[game.currentPlayer].splice(i, 1);
+  //check whether the card was on the board or not before being dragged
+  if(game.heldCard.onBoard) {
+    //if it was on the board, do nothing
+  }
+  else {
+    // Check if card is dropped on board
+    if (e.offsetX > 0 && e.offsetX < CANVASWIDTH && e.offsetY > 0 && e.offsetY < CANVASHEIGHT-SPRITEHEIGHT) {
+      game.heldCard.onBoard = true;
+      game.boardCards.push([game.heldCard]);
 
-        // change coordinates
-        game.boardCards[game.boardCards.length-1][0].posX = e.offsetX - SPRITEWIDTH/2;
-        game.boardCards[game.boardCards.length-1][0].posY = e.offsetY - SPRITEHEIGHT/2;
-        
-        console.log(game.boardCards[game.boardCards.length-1][0].posX = e.offsetX - SPRITEWIDTH/2, game.boardCards[game.boardCards.length-1][0].posY = e.offsetY - SPRITEHEIGHT/2);
-        updateDebug();
-      }
 
-      card.dragging = false;
-      console.log("stopped dragging");
-      renderGame();
+      // change coordinates
+      game.boardCards[game.boardCards.length-1][0].posX = e.offsetX - SPRITEWIDTH/2;
+      game.boardCards[game.boardCards.length-1][0].posY = e.offsetY - SPRITEHEIGHT/2;
+      
+      console.log(game.boardCards[game.boardCards.length-1][0].posX = e.offsetX - SPRITEWIDTH/2, game.boardCards[game.boardCards.length-1][0].posY = e.offsetY - SPRITEHEIGHT/2);
+      updateDebug();
     }
   }
 
-  for (var i = 0; i < game.boardCards.length; i++) {
-    var card = game.boardCards[i][0];
-    if (card.dragging) {
-      card.dragging = false;
-      console.log("stopped dragging");
-      renderGame();
-    }
-  }
+  game.heldCard = null;
+  
+  console.log("stopped dragging");
+  renderGame();
 }
 
 // -----------------------------------------------------------------------
