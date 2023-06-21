@@ -29,7 +29,7 @@ gameCanvas.onmousedown = function(e) {
     // For cards on board
     if (e.offsetX > card.posX && e.offsetX < card.posX + SPRITEWIDTH && e.offsetY > card.posY && e.offsetY < card.posY + SPRITEHEIGHT) {
       // If the card that was clicked on was found
-      console.log("dragging");
+      console.log("mouse down");
       draggedCardFound = true;
       // Set the card to the game's heldCard
       game.heldCard = card;
@@ -74,7 +74,7 @@ gameCanvas.onmouseup = function(e) {
 
   game.heldCard = null;
   
-  console.log("stopped dragging");
+  console.log("mouse up");
   renderGame();
 }
 
