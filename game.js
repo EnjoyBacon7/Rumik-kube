@@ -35,6 +35,8 @@ gameCanvas.onmousemove = function(e) {
 gameCanvas.onmouseup = function(e) {
   mouseIsDown = false;
 
+
+
   //check whether the card was on the board or not before being dragged
   if(game.drawnCards[game.heldCard].onBoard) {
     //if it was on the board, make sure it is not dropped in the player's hand
@@ -45,21 +47,20 @@ gameCanvas.onmouseup = function(e) {
   else {
     // Check if card is dropped on board
     if (e.offsetX > 0 && e.offsetX < CANVASWIDTH && e.offsetY > 0 && e.offsetY < CANVASHEIGHT-SPRITEHEIGHT) {
-      game.heldCard.onBoard = true;
-      game.boardCards.push([game.heldCard]);
-
+      game.drawnCards[game.heldCard].onBoard = true;
+      game.drawnCards[game.heldCard].state = -1;
 
       // change coordinates
-      game.boardCards[game.boardCards.length-1][0].posX = e.offsetX - SPRITEWIDTH/2;
-      game.boardCards[game.boardCards.length-1][0].posY = e.offsetY - SPRITEHEIGHT/2;
+      game.drawnCards[game.heldCard].posX = e.offsetX - SPRITEWIDTH/2;
+      game.drawnCards[game.heldCard].posY = e.offsetY - SPRITEHEIGHT/2;
       
-      console.log(game.boardCards[game.boardCards.length-1][0].posX = e.offsetX - SPRITEWIDTH/2, game.boardCards[game.boardCards.length-1][0].posY = e.offsetY - SPRITEHEIGHT/2);
-      updateDebug();
     }
   }
+  console.log(game);
 
   game.heldCard = null;
   
+  debugTable(game);
   renderGame();
 }
 
