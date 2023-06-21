@@ -55,18 +55,59 @@ function debug() {
 
 function debugTable(game) {
 
-  // Change color of corresponding cards when player owns it (noting that there are two of each card)
+  var colors = ["aqua", "indianred", "lightgreen", "yellow"];
+
+  // Clear the table
+  document.getElementById("player0").innerHTML = `<th scope="row" class="border-0">Player 0</th>`;
+  document.getElementById("player1").innerHTML = `<th scope="row" class="border-0">Player 1</th>`;
+  document.getElementById("player2").innerHTML = `<th scope="row" class="border-0">Player 2</th>`;
+  document.getElementById("player3").innerHTML = `<th scope="row" class="border-0">Player 3</th>`;
+  document.getElementById("bugged").innerHTML = `<th scope="row" class="border-0">Bugged</th>`;
+  document.getElementById("undrawn").innerHTML = ``;
+
+  // Add the cards to the corresponding player's row (with the right color)
   for (var i = 0; i < game.drawnCards.length; i++) {
     var curCard = game.drawnCards[i];
     var color = colors[curCard.color];
     var number = curCard.value;
-    if (document.getElementById(color + number + "_1").style.backgroundColor != "") {
-      document.getElementById(color + number + "_2").style.backgroundColor = colors[curCard.state];
+    var player = curCard.state;
+    console.log(player);
+
+    if(player != -1) {
+      var newtd = document.createElement('td');
+      newtd.innerHTML = `${number}`;
+      newtd.classList.add("border-0")
+      newtd.style.backgroundColor = color;
+      var playerRow = document.getElementById(`player${player}`);
+      playerRow.appendChild(newtd);
     }
-    else {
-      console.log("hello");
-      document.getElementById(color + number + "_1").style.backgroundColor = colors[curCard.state];
+  
+  }
+
+  // Add the undrawn cards to the corresponding row (with the right color) (split in rows of 15)
+  var undrawnrow = document.createElement("tr");
+  undrawnrow.classList.add("text-center");
+  undrawnrow.classList.add("border-0");
+
+  for (var i = 0; i < game.undrawnCards.length; i++) {
+
+    if ((i % 15 == 0 && i != 0) || i == game.undrawnCards.length - 1) {
+      document.getElementById("undrawn").appendChild(undrawnrow);
+      var undrawnrow = document.createElement("tr");
+      undrawnrow.classList.add("text-center");
+      undrawnrow.classList.add("border-0");
     }
+
+    var curCard = game.undrawnCards[i];
+    var color = colors[curCard.color];
+    var number = curCard.value;
+
+    var newtd = document.createElement('td');
+    newtd.innerHTML = `${number}`;
+    newtd.classList.add("border-0")
+    newtd.style.backgroundColor = color;
+
+    undrawnrow.appendChild(newtd);
   }
 
 }
