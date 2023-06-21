@@ -69,6 +69,8 @@ for (var i = 0; i < 4; i++) {
 
     // Assigning values to card
     curCard.state = i;
+    curCard.posX = j * SPRITEWIDTH;
+    curCard.posY = CANVASHEIGHT - SPRITEHEIGHT;
 
     game.drawnCards.push(curCard);
   }
