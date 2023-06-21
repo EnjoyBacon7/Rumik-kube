@@ -8,6 +8,7 @@ var mouseIsDown = false;
 /// Only possible for the cards in hand
 gameCanvas.onmousedown = function(e) {
   mouseIsDown = true;
+
   var draggedCardFound = false;
 
   for (var i = 0; i < game.drawnCards.length; i++) {
@@ -15,7 +16,6 @@ gameCanvas.onmousedown = function(e) {
     var card = game.drawnCards[i];
     if (e.offsetX > card.posX && e.offsetX < card.posX + SPRITEWIDTH && e.offsetY > card.posY && e.offsetY < card.posY + SPRITEHEIGHT) {
       // If the card that was clicked on was found
-      console.log("mouse down");
       draggedCardFound = true;
       // Set the card to the game's heldCard
       game.heldCard = i;
@@ -28,7 +28,6 @@ gameCanvas.onmousemove = function(e) {
 
     game.drawnCards[game.heldCard].posX = e.offsetX - SPRITEWIDTH/2;
     game.drawnCards[game.heldCard].posY = e.offsetY - SPRITEHEIGHT/2;
-    console.log("moving");
     renderGame();
   }
 }
@@ -61,7 +60,6 @@ gameCanvas.onmouseup = function(e) {
 
   game.heldCard = null;
   
-  console.log("mouse up");
   renderGame();
 }
 
