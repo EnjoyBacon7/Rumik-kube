@@ -10,23 +10,42 @@ function debug() {
         <h3>Debug Menu</h3>
       </div>
       <table class="table card-body border-0 p-0">
+        <thead>
+          <tr class="text-center">
+            <th scope="col" class="border-0 h3 fw-bold">Player</th>
+            <th scope="col" colspan="14" class="border-0 h3 fw-bold">Cards</th>
+          </tr>
+        </thead>
         <tbody>
-          <tr id="player0">
+          <tr id="player0" class="text-center">
             <th scope="row" class="border-0">Player 0</th>
 
           </tr>
-          <tr id="player1">
+          <tr id="player1" class="text-center">
             <th scope="row" class="border-0">Player 1</th>
 
           </tr>
-          <tr id="player2">
+          <tr id="player2" class="text-center">
             <th scope="row" class="border-0">Player 2</th>
 
           </tr>
-          <tr id="player3">
+          <tr id="player3" class="text-center">
             <th scope="row" class="border-0">Player 3</th>
 
           </tr>
+          <tr id="bugged" class="text-center">
+            <th scope="row" class="border-0">Bugged</th>
+
+          </tr>
+        </tbody>
+      </table>
+      <table class="table card-body border-0 p-0">
+        <thead>
+          <tr class="text-center">
+            <th scope="col" colspan="15" class="border-0 h3 fw-bold">Undrawn Cards</th>
+          </tr>
+        </thead>
+        <tbody id="undrawn">
         </tbody>
       </table>
     </div>
