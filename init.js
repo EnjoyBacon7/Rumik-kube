@@ -52,7 +52,7 @@ for (var j = 0; j < 8; j++) {
     curCard.posY = 0;
     curCard.value = i;
     curCard.color = j%4;  // Modulo (with j < 8) allows to loop through all 4 colors twice for each value
-    curCard.onBoard = -1;
+    curCard.onBoard = false;
 
     game.undrawnCards.push(curCard);
   }
