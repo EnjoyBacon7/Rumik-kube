@@ -1,63 +1,40 @@
 // -----------------------------------------------------------------------
 
-// Disgusting debug function that displays the cards that each player has in their hand
-function debug(game) {
+function debug() {
 
-  var body = document.getElementsByTagName('body')[0];
-  var colors = ["blue", "red", "green", "yellow"];
+  var debugCard = document.createElement('div');
+  debugCard.classList.add("container");
+  debugCard.innerHTML = `
+    <div id="debugCard" class="card">
+      <div class="card-header">
+        <h3>Debug Menu</h3>
+      </div>
+      <table class="table card-body border-0 p-0">
+        <tbody>
+          <tr id="player0">
+            <th scope="row" class="border-0">Player 0</th>
 
-  var debugDiv = document.createElement('div');
-  debugDiv.id = "debugging";
-  body.appendChild(debugDiv);
+          </tr>
+          <tr id="player1">
+            <th scope="row" class="border-0">Player 1</th>
 
-  var table = document.createElement('table');
-  debugDiv.appendChild(table);
+          </tr>
+          <tr id="player2">
+            <th scope="row" class="border-0">Player 2</th>
 
-  var thead = document.createElement('thead');
-  table.appendChild(thead);
+          </tr>
+          <tr id="player3">
+            <th scope="row" class="border-0">Player 3</th>
 
-  var tr = document.createElement('tr');
-  thead.appendChild(tr);
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  `;
+  document.getElementById("debugMenu").appendChild(debugCard);
+}
 
-  var th = document.createElement('th');
-  th.innerHTML = "Blue";
-  tr.appendChild(th);
-
-  var th = document.createElement('th');
-  th.innerHTML = "Red";
-  tr.appendChild(th);
-
-  var th = document.createElement('th');
-  th.innerHTML = "Green";
-  tr.appendChild(th);
-
-  var th = document.createElement('th');
-  th.innerHTML = "Yellow";
-  tr.appendChild(th);
-
-  var tbody = document.createElement('tbody');
-  table.appendChild(tbody);
-
-  for (var i = 1; i < 14; i++) {
-
-    var tr = document.createElement('tr');
-    tbody.appendChild(tr);
-    for (var j = 0; j < 4; j++) {
-      var td = document.createElement('td');
-      td.id = colors[j] + i + "_1";
-      td.innerHTML = i;
-      tr.appendChild(td);
-    }
-
-    var tr = document.createElement('tr');
-    tbody.appendChild(tr);
-    for (var j = 0; j < 4; j++) {
-      var td = document.createElement('td');
-      td.id = colors[j] + i + "_2";
-      td.innerHTML = i;
-      tr.appendChild(td);
-    }
-  }
+function debugTable(game) {
 
   // Change color of corresponding cards when player owns it (noting that there are two of each card)
   for (var i = 0; i < game.drawnCards.length; i++) {
@@ -73,33 +50,6 @@ function debug(game) {
     }
   }
 
-}
-
-function updateDebug() {
-  
-    var colors = ["blue", "red", "green", "yellow"];
-  
-    // Clear all colors
-    for (var i = 1; i < 14; i++) {
-      for (var j = 0; j < 4; j++) {
-        document.getElementById(colors[j] + i + "_1").style.backgroundColor = "";
-        document.getElementById(colors[j] + i + "_2").style.backgroundColor = "";
-      }
-    }
-
-    // Change color of corresponding cards when player owns it (noting that there are two of each card)
-    for (var i = 0; i < game.playerCards.length; i++) {
-      for (var j = 0; j < game.playerCards[i].length; j++) {
-        var color = colors[game.playerCards[i][j].color];
-        var number = game.playerCards[i][j].value;
-        if (document.getElementById(color + number + "_1").style.backgroundColor != "") {
-          document.getElementById(color + number + "_2").style.backgroundColor = colors[i];
-        }
-        else {
-          document.getElementById(color + number + "_1").style.backgroundColor = colors[i];
-        }
-      }
-    }
 }
 
 // -----------------------------------------------------------------------
