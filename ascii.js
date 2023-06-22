@@ -13,8 +13,6 @@ function ASCIIbanner() {
   setInterval(function() {
       // Shift buffer to the left
       buffer = buffer.slice(1) + " ";
-      // Display the buffer
-      console.log("[" + buffer + "]");
       // Set the banner
       bannerDiv.innerHTML = `<pre>[${buffer.substring(0, bannerLength)}]</pre>`;
       if (buffer.trim() === "") {
