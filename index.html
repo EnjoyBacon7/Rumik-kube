@@ -25,6 +25,9 @@
 
 <body>
 
+  <!-- Banner -->
+  <div id="banner"></div>
+
   <!-- Main Game Canvas -->
   <canvas id="gameCanvas" width="2000" height="800"
     class="position-relative start-50 translate-middle-x border border-black mt-2"></canvas>
@@ -38,6 +41,7 @@
   <script src="game.js"></script>
   <script src="render.js"></script>
   <script src="debug.js"></script>
+  <script src="ascii.js"></script>
 
   <script>
     window.onload = function () {
@@ -46,6 +50,7 @@
       debug(game);
       debugTable(game);
       renderGame();
+      ASCIIbanner();
     }
   </script>
 
