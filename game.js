@@ -65,3 +65,8 @@ gameCanvas.onmouseup = function(e) {
 }
 
 // -----------------------------------------------------------------------
+
+function changePlayer(player) {
+  game.currentPlayer = player;
+  renderGame();
+}
