@@ -41,12 +41,27 @@ function renderHighlights() {
   for (var i = 0; i < game.boardCards.length; i++) {}
 }
 
+// -----------------------------------------------------------------------
+
+// Draw Submit button
+
+function renderEndTurnBtn() {
+  context.fillStyle = "black";
+  context.fillRect(CANVASWIDTH-SPRITEWIDTH, CANVASHEIGHT-SPRITEHEIGHT, SPRITEWIDTH, SPRITEHEIGHT);
+  context.fillStyle = "white";
+  context.font = "30px Arial";
+  context.fillText("DONE", CANVASWIDTH - SPRITEWIDTH, CANVASHEIGHT - SPRITEHEIGHT/3);
+}
+
+// -----------------------------------------------------------------------
+
+// Global Rendering
+
 function renderGame() {
 
   context.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
 
   renderBoard();
   renderHand();
+  renderEndTurnBtn();
 }
-
-// -----------------------------------------------------------------------
