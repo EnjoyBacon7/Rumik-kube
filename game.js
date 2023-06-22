@@ -14,7 +14,7 @@ gameCanvas.onmousedown = function(e) {
   for (var i = 0; i < game.drawnCards.length; i++) {
     if(draggedCardFound) { break; }
     var card = game.drawnCards[i];
-    if (e.offsetX > card.posX && e.offsetX < card.posX + SPRITEWIDTH && e.offsetY > card.posY && e.offsetY < card.posY + SPRITEHEIGHT) {
+    if (e.offsetX > card.posX && e.offsetX < card.posX + SPRITEWIDTH && e.offsetY > card.posY && e.offsetY < card.posY + SPRITEHEIGHT && (game.currentPlayer == card.state || card.state == -1)) {
       // If the card that was clicked on was found
       draggedCardFound = true;
       // Set the card to the game's heldCard
