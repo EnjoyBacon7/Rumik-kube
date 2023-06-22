@@ -67,7 +67,6 @@ function debugTable(game) {
     var color = colors[curCard.color];
     var number = curCard.value;
     var player = curCard.state;
-    console.log(player);
 
     if(player != -1) {
       var newtd = document.createElement('td');
