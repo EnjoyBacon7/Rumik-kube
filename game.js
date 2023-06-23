@@ -70,7 +70,7 @@ gameCanvas.onmouseup = function(e) {
   }
   console.log(game);
 
-  game.heldCard = null;
+  game.heldCard = -1;
   
   debugTable(game);
   renderGame();
