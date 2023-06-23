@@ -24,7 +24,7 @@ var game = {
   drawnCards: [],
   undrawnCards: [],
 
-  heldCard: [], // Stores the card currently being dragged (it is useful to store it here to avoid having to loop through all cards to find it)
+  heldCard: -1, // Stores the card currently being dragged (it is useful to store it here to avoid having to loop through all cards to find it)
 };
 
 // Initializing a card class for reusability
