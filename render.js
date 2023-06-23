@@ -38,13 +38,29 @@ function renderHand() {
 }
 
 function renderHighlights() {
-  for (var i = 0; i < game.boardCards.length; i++) {}
+  var heldCard;
+  if(game.heldCard != -1) {
+    heldCard = game.drawnCards[game.heldCard];
+  }
+  else {
+    return -1;
+  }
+
+  for(var i = 0; i < game.drawnCards.length; i++) {
+    var card = game.drawnCards[i];
+    if(card != heldCard && card.state == -1) {
+      if((card.color == heldCard.color) || (card.value == heldCard.value++) || (card.value == heldCard.value--)) {
+        context.strokeStyle = "red";
+        context.strokeRect(card.posX, card.posY, SPRITEWIDTH, SPRITEHEIGHT);
+      }
+    }
+  }
 }
 
 // -----------------------------------------------------------------------
 
 // Draw Submit button
-
+/// Non functionnal
 function renderEndTurnBtn() {
   context.fillStyle = "black";
   context.fillRect(CANVASWIDTH-SPRITEWIDTH, CANVASHEIGHT-SPRITEHEIGHT, SPRITEWIDTH, SPRITEHEIGHT);
@@ -63,5 +79,6 @@ function renderGame() {
 
   renderBoard();
   renderHand();
+  renderHighlights();
   renderEndTurnBtn();
 }
