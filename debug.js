@@ -111,3 +111,10 @@ function debugTable(game) {
 }
 
 // -----------------------------------------------------------------------
+
+// Simple debug output function that takes into consideration the DEBUGBOOL variable
+function dbgOutput(text) {
+  if(DEBUGBOOL) {
+    console.log(text);
+  }
+}
