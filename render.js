@@ -1,7 +1,7 @@
 // -----------------------------------------------------------------------
 
 // Draw individual sprite function (0 blue, 1 red, 2 green, 3 yellow)
-function drawSprite(x, y, number, color) {
+function drawNumber(x, y, number, color) {
   context.drawImage(spriteSheet, number * SPRITEPIXELWIDTH, color * SPRITEPIXELHEIGHT + SPRITEPIXELHEIGHT, SPRITEPIXELWIDTH, SPRITEPIXELHEIGHT, x, y, SPRITEWIDTH, SPRITEHEIGHT);
 }
 
@@ -13,7 +13,7 @@ function renderBoard() {
   for (var i = 0; i < game.drawnCards.length; i++) {
     if(game.drawnCards[i].state == -1) {
       var card = game.drawnCards[i];
-      drawSprite(card.posX, card.posY, card.value, card.color);
+      drawNumber(card.posX, card.posY, card.value, card.color);
     }
   }
 } 
@@ -28,7 +28,7 @@ function renderHand() {
   for(var i = 0; i < game.drawnCards.length; i++) {
     var card = game.drawnCards[i];
     if(card.state == game.currentPlayer) {
-      drawSprite(card.posX, card.posY, card.value, card.color);
+      drawNumber(card.posX, card.posY, card.value, card.color);
       if(card == game.heldCard) {
         context.strokeStyle = "red";
         context.strokeRect(card.posX, card.posY, SPRITEWIDTH, SPRITEHEIGHT);
