@@ -30,7 +30,7 @@ gameCanvas.onmousedown = function(e) {
 
   // In case of clicking on button
   if (e.offsetX > CANVASWIDTH-SPRITEWIDTH && e.offsetX < CANVASWIDTH && e.offsetY > CANVASHEIGHT-SPRITEHEIGHT && e.offsetY < CANVASHEIGHT) {
-    console.log("clicked");
+    dbgOutput("clicked");
   }
 }
 
@@ -68,7 +68,7 @@ gameCanvas.onmouseup = function(e) {
       }
     }
   }
-  console.log(game);
+  dbgOutput(game);
 
   game.heldCard = -1;
   
