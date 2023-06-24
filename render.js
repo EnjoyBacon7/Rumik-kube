@@ -63,18 +63,18 @@ function renderHighlights() {
 /// Non functionnal
 function renderEndTurnBtn() {
   context.fillStyle = "black";
-  context.fillRect(CANVASWIDTH-SPRITEWIDTH, CANVASHEIGHT-SPRITEHEIGHT, SPRITEWIDTH, SPRITEHEIGHT);
+  context.fillRect(END_TURN_POS_X, END_TURN_POS_Y, SPRITEWIDTH, SPRITEHEIGHT);
   context.fillStyle = "white";
   context.font = "30px Arial";
-  context.fillText("DONE", CANVASWIDTH - SPRITEWIDTH, CANVASHEIGHT - SPRITEHEIGHT/3);
+  context.fillText("DONE", END_TURN_POS_X, END_TURN_POS_Y + SPRITEHEIGHT*(2/3));
 }
 
 function renderResetBtn() {
   context.fillStyle = "black";
-  context.fillRect(CANVASWIDTH-SPRITEWIDTH*2, CANVASHEIGHT-SPRITEHEIGHT, SPRITEWIDTH, SPRITEHEIGHT);
+  context.fillRect(RESET_POS_X, RESET_POS_Y, SPRITEWIDTH, SPRITEHEIGHT);
   context.fillStyle = "yellow";
   context.font = "30px Arial";
-  context.fillText("RESET", CANVASWIDTH - SPRITEWIDTH*2, CANVASHEIGHT - SPRITEHEIGHT/3);
+  context.fillText("RESET", RESET_POS_X, RESET_POS_Y + SPRITEHEIGHT*(2/3));
 }
 
 // -----------------------------------------------------------------------
