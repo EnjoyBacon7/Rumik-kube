@@ -75,4 +75,5 @@ for (var i = 0; i < 4; i++) {
     game.drawnCards.push(curCard);
   }
 }
-console.log(game);
+
+dbgOutput(game);
