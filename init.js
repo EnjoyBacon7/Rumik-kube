@@ -2,6 +2,10 @@
 
 // Initialize canvas and context
 var gameCanvas = document.getElementById("gameCanvas");
+gameCanvas.width = CANVASWIDTH;
+gameCanvas.height = CANVASHEIGHT;
+
+gameCanvas.classList.add("position-relative", "start-50", "translate-middle-x", "border", "border-black", "mt-2");
 var context = gameCanvas.getContext("2d");
 
 // Remove anti-aliasing
