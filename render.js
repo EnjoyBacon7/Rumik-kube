@@ -69,6 +69,14 @@ function renderEndTurnBtn() {
   context.fillText("DONE", CANVASWIDTH - SPRITEWIDTH, CANVASHEIGHT - SPRITEHEIGHT/3);
 }
 
+function renderResetBtn() {
+  context.fillStyle = "black";
+  context.fillRect(CANVASWIDTH-SPRITEWIDTH*2, CANVASHEIGHT-SPRITEHEIGHT, SPRITEWIDTH, SPRITEHEIGHT);
+  context.fillStyle = "yellow";
+  context.font = "30px Arial";
+  context.fillText("RESET", CANVASWIDTH - SPRITEWIDTH*2, CANVASHEIGHT - SPRITEHEIGHT/3);
+}
+
 // -----------------------------------------------------------------------
 
 // Global Rendering
@@ -81,4 +89,5 @@ function renderGame() {
   renderHand();
   renderHighlights();
   renderEndTurnBtn();
+  renderResetBtn();
 }
