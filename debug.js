@@ -3,6 +3,9 @@
 function debug() {
 
   var debugCard = document.createElement('div');
+
+  if(!DEBUGBOOL) {debugCard.style.display = "none"}
+
   debugCard.classList.add("container");
   debugCard.innerHTML = `
 <div id="debugCard" class="card">
